@@ -50,6 +50,12 @@ def train_from_db(db: Session = Depends(get_db)):
             for r in rows
         ]
         df = pd.DataFrame(data)
+       
+        print('******* dataframe colonnes ******')
+        cols = df.columns.tolist()
+        print(cols)
+        df.drop(columns=["id"], inplace=True)
+
 
         # 3) Vérifier colonnes (features + target)
         _check_columns_train(df)
